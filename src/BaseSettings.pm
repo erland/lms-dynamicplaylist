@@ -63,9 +63,9 @@ sub handler {
 	}
 	$params->{'subpages'} = \%currentSubPages;
 	$params->{'subpage'} = $class->currentPage($client,$params);
-	$params->{'licensemanager'} = Plugins::DynamicPlayList::Plugin::isPluginsInstalled($client,'LicenseManagerPlugin');
-	my $validateRequest = Slim::Control::Request::executeRequest($client,['licensemanager','validate','application:DynamicPlayList']);
-	$params->{'licensed'} = $validateRequest->getResult("result");
+	$params->{'licensemanager'} = 1; #Plugins::DynamicPlayList::Plugin::isPluginsInstalled($client,'LicenseManagerPlugin');
+	#my $validateRequest = Slim::Control::Request::executeRequest($client,['licensemanager','validate','application:DynamicPlayList']);
+	$params->{'licensed'} = 1; #$validateRequest->getResult("result");
 	$params->{'supportsMixers'} = $::VERSION lt '7.6';
 	return $class->SUPER::handler($client, $params);
 }

@@ -977,10 +977,10 @@ sub initPlayLists {
 		}
 	}
 	use strict 'refs';
-	my $validateRequest = Slim::Control::Request::executeRequest($client,['licensemanager','validate','application:DynamicPlayList']);
-	if($validateRequest->getResult("result")) {
+	#my $validateRequest = Slim::Control::Request::executeRequest($client,['licensemanager','validate','application:DynamicPlayList']);
+	#if($validateRequest->getResult("result")) {
 		addAlarmPlaylists(\%localPlayLists);
-	}
+	#}
 	$rescan = 0;
 	$playLists = \%localPlayLists;
 	$playListItems = \%localPlayListItems;
@@ -1227,9 +1227,9 @@ sub setModeMixer {
 
 	my $masterClient = masterOrSelf($client);
 
-	my $licenseManager = Plugins::DynamicPlayList::Plugin::isPluginsInstalled($client,'LicenseManagerPlugin');
-	my $validateRequest = Slim::Control::Request::executeRequest($client,['licensemanager','validate','application:DynamicPlayList']);
-	my $licensed = $validateRequest->getResult("result");
+	my $licenseManager = 1; #Plugins::DynamicPlayList::Plugin::isPluginsInstalled($client,'LicenseManagerPlugin');
+	#my $validateRequest = Slim::Control::Request::executeRequest($client,['licensemanager','validate','application:DynamicPlayList']);
+	my $licensed = 1; #$validateRequest->getResult("result");
 
 	if($licenseManager && $licensed) {
 		my @listRef = ();
@@ -2706,9 +2706,9 @@ sub handleWebList {
 	$params->{'pluginDynamicPlayListContinuousMode'} = $prefs->get('keep_adding_tracks');
 	$params->{'pluginDynamicPlayListNowPlaying'} = $name;
 	$params->{'pluginDynamicPlayListVersion'} = $PLUGINVERSION;
-	$params->{'licensemanager'} = Plugins::DynamicPlayList::Plugin::isPluginsInstalled($client,'LicenseManagerPlugin');
-	my $validateRequest = Slim::Control::Request::executeRequest($client,['licensemanager','validate','application:DynamicPlayList']);
-	$params->{'licensed'} = $validateRequest->getResult("result");
+	$params->{'licensemanager'} = 1; #Plugins::DynamicPlayList::Plugin::isPluginsInstalled($client,'LicenseManagerPlugin');
+	#my $validateRequest = Slim::Control::Request::executeRequest($client,['licensemanager','validate','application:DynamicPlayList']);
+	$params->{'licensed'} = 1; #$validateRequest->getResult("result");
 	
 	return Slim::Web::HTTP::filltemplatefile($htmlTemplate, $params);
 }
@@ -3343,9 +3343,9 @@ sub cliJiveHandler {
 		$log->debug("Exiting cliJiveHandler\n");
 		return;
 	}
-	my $licenseManager = Plugins::DynamicPlayList::Plugin::isPluginsInstalled($client,'LicenseManagerPlugin');
-	my $validateRequest = Slim::Control::Request::executeRequest($client,['licensemanager','validate','application:DynamicPlayList']);
-	my $licensed = $validateRequest->getResult("result");
+	my $licenseManager = 1; #Plugins::DynamicPlayList::Plugin::isPluginsInstalled($client,'LicenseManagerPlugin');
+	#my $validateRequest = Slim::Control::Request::executeRequest($client,['licensemanager','validate','application:DynamicPlayList']);
+	my $licensed = 1; #$validateRequest->getResult("result");
 
 	if($licenseManager && $licensed) {
 		if(!$playLists || $rescan) {
@@ -3636,9 +3636,9 @@ sub cliMixJiveHandler {
 		$log->debug("Exiting cliMixJiveHandler\n");
 		return;
 	}
-	my $licenseManager = Plugins::DynamicPlayList::Plugin::isPluginsInstalled($client,'LicenseManagerPlugin');
-	my $validateRequest = Slim::Control::Request::executeRequest($client,['licensemanager','validate','application:DynamicPlayList']);
-	my $licensed = $validateRequest->getResult("result");
+	my $licenseManager = 1; #Plugins::DynamicPlayList::Plugin::isPluginsInstalled($client,'LicenseManagerPlugin');
+	#my $validateRequest = Slim::Control::Request::executeRequest($client,['licensemanager','validate','application:DynamicPlayList']);
+	my $licensed = 1; #$validateRequest->getResult("result");
 
 	if($licenseManager && $licensed) {
 		if(!$playListTypes || $rescan) {
